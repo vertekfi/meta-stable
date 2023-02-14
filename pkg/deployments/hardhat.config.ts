@@ -19,7 +19,7 @@ task('deploy', 'Run deployment task')
   .addOptionalParam('key', 'Etherscan API key to verify contracts')
   .setAction(
     async (args: { id: string; force?: boolean; key?: string; verbose?: boolean }, hre: HardhatRuntimeEnvironment) => {
-      Logger.setDefaults(false, args.verbose || false);
+      Logger.setDefaults(false, args.verbose || true);
       const verifier = args.key ? new Verifier(hre.network, args.key) : undefined;
       await Task.fromHRE(args.id, hre, verifier).run(args);
     }
